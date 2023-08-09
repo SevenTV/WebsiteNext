@@ -1,0 +1,25 @@
+{
+	"extends": "@vue/tsconfig/tsconfig.dom.json",
+	"compilerOptions": {
+		"target": "ES2022",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"useDefineForClassFields": true,
+		"strict": true,
+		"jsx": "preserve",
+		"jsxFactory": "VueJSX",
+		"sourceMap": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"lib": ["ESNext", "DOM", "WebWorker"],
+		"types": ["vite/client"],
+		"skipLibCheck": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["./src/*"],
+			"CHANGELOG": ["./CHANGELOG.md"]
+		}
+	},
+	"include": ["src/*.ts", "src/**/*.ts", "src/types/*.d.ts", "src/**/*.vue"],
+	"references": [{ "path": "./tsconfig.node.json" }]
+}
