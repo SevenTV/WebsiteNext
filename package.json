@@ -4,7 +4,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"scripts": {
-		"gh-packages-key": "cat .npmrc.rev | rev >> .npmrc",
+		"gh-packages-key": "cat .npmrc.rev | rev >> .npmrc && git update-index --skip-worktree .npmrc",
 		"dev": "vite --mode dev",
 		"build:production": "vue-tsc --noEmit && vite build",
 		"build:stage": "vue-tsc --noEmit && vite build --mode stage",
