@@ -1,0 +1,41 @@
+name: "Lint and Build"
+
+on:
+    push:
+        branches:
+            - master
+
+    pull_request:
+        types:
+            - opened
+            - synchronize
+            - reopened
+            - labeled
+
+    workflow_dispatch:
+        inputs:
+            build:
+                type: boolean
+                default: false
+                description: "Rebuild site"
+
+jobs:
+    lint:
+        name: Lint
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout Repository
+              uses: actions/checkout@v3
+
+            - name: Setup node auth and module cache
+              uses: actions/setup-node@v3
+              with:
+                  cache: "yarn"
+                  node-version: "19.x"
+                  registry-url: "https://npm.pkg.github.com"
+
+            - name: Install Dependencies
+              run: yarn
+
+            - name: Lint all Packages
+              run: yarn lint
