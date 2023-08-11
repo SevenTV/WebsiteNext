@@ -431,6 +431,26 @@
     picocolors "^1.0.0"
     tslib "^2.6.0"
 
+"@seventv/theming@~0", "@seventv/theming@~0.1":
+  version "0.1.0"
+  resolved "https://npm.pkg.github.com/download/@seventv/theming/0.1.0/a471795678cfd2fbee0dd439a90169e93dda3f4c#a471795678cfd2fbee0dd439a90169e93dda3f4c"
+  integrity sha512-JUiIJNi7Adjztj2kL30u6ygCo38kGwD4FqiW1ewxGWn70u1aIKydJQqRemfDG/230i85wgIu6/DSG92+NPePBQ==
+  dependencies:
+    "@types/node" "^20.4.9"
+    typescript "^5.1.6"
+    vue "^3.3.4"
+
+"@seventv/ui@~0.1":
+  version "0.1.0"
+  resolved "https://npm.pkg.github.com/download/@seventv/ui/0.1.0/1a52c4f650af983349e6230c9a641ab4af25189e#1a52c4f650af983349e6230c9a641ab4af25189e"
+  integrity sha512-pwgINSsWqTZWH252M+LCNXxLskxcdeF4VkpaCwjrpmdaxdFYzVcdqNDQRAAatNE7tuAUntf2LiVnKC2gIZIW5Q==
+  dependencies:
+    "@seventv/theming" "~0"
+    "@types/node" "^20.4.9"
+    typescript "^5.1.6"
+    vue "^3.3.4"
+    vue-router "^4.2.4"
+
 "@trivago/prettier-plugin-sort-imports@^4.2.0":
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/@trivago/prettier-plugin-sort-imports/-/prettier-plugin-sort-imports-4.2.0.tgz#b240366f9e2bda8e14edb18b14ea084e0ec25968"
@@ -3424,7 +3444,7 @@ vue-i18n@^9.2.2:
     "@intlify/vue-devtools" "9.2.2"
     "@vue/devtools-api" "^6.2.1"
 
-vue-router@^4.1.6:
+vue-router@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-4.2.4.tgz#382467a7e2923e6a85f015d081e1508052c191b9"
   integrity sha512-9PISkmaCO02OzPVOMq2w82ilty6+xJmQrarYZDkjZBfl4RvYAlt4PKnEX21oW4KTtWfa9OuO/b3qk1Od3AEdCQ==
@@ -3448,7 +3468,7 @@ vue-tsc@^1.8.8:
     "@vue/typescript" "1.8.8"
     semver "^7.3.8"
 
-vue@^3.2.37:
+vue@^3.3.4:
   version "3.3.4"
   resolved "https://registry.yarnpkg.com/vue/-/vue-3.3.4.tgz#8ed945d3873667df1d0fcf3b2463ada028f88bd6"
   integrity sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw==

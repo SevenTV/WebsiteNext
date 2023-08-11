@@ -17,9 +17,9 @@
 <script setup lang="ts">
 import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
-import UiLoadingBar from "./components/ui/UiLoadingBar.vue";
 import { getUniqueRouteKey } from "./util/router";
 import NavHeader from "@/components/NavHeader.vue";
+import { UiLoadingBar } from "@seventv/ui";
 
 const router = useRouter();
 

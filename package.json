@@ -4,6 +4,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"scripts": {
+		"gh-packages-key": "cat .npmrc.rev | rev >> .npmrc",
 		"dev": "vite --mode dev",
 		"build:production": "vue-tsc --noEmit && vite build",
 		"build:stage": "vue-tsc --noEmit && vite build --mode stage",
@@ -18,12 +19,14 @@
 		"lint:fix": "yarn lint:js:fix && yarn lint:style:fix"
 	},
 	"dependencies": {
+		"@seventv/theming": "~0.1",
+		"@seventv/ui": "~0.1",
 		"@floating-ui/dom": "^1.0.3",
 		"@vueuse/core": "^10.3.0",
 		"@vueuse/head": "^1.1.26",
-		"vue": "^3.2.37",
+		"vue": "^3.3.4",
 		"vue-i18n": "^9.2.2",
-		"vue-router": "^4.1.6"
+		"vue-router": "^4.2.4"
 	},
 	"devDependencies": {
 		"@trivago/prettier-plugin-sort-imports": "^4.2.0",

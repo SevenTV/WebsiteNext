@@ -8,12 +8,6 @@ updates:
           interval: daily
           time: "00:00"
       open-pull-requests-limit: 10
-      reviewers:
-          - anatoleam
-          - melonify
-      assignees:
-          - anatoleam
-          - melonify
       commit-message:
           prefix: fix
           prefix-development: chore
@@ -26,12 +20,6 @@ updates:
           interval: daily
           time: "00:00"
       open-pull-requests-limit: 10
-      reviewers:
-          - anatoleam
-          - melonify
-      assignees:
-          - anatoleam
-          - melonify
       commit-message:
           prefix: fix
           prefix-development: chore
