@@ -4,7 +4,8 @@
 	"private": true,
 	"version": "0.0.0",
 	"scripts": {
-		"gh-packages-key": "cat .npmrc.rev | rev >> .npmrc && git update-index --skip-worktree .npmrc",
+		"gh-packages-key": "yarn gh-packages-key:undo && cat .npmrc.rev | rev >> .npmrc && git update-index --skip-worktree .npmrc",
+		"gh-packages-key:undo": "git update-index --no-skip-worktree .npmrc && git restore .npmrc",
 		"dev": "vite --mode dev",
 		"build:production": "vue-tsc --noEmit && vite build",
 		"build:stage": "vue-tsc --noEmit && vite build --mode stage",
