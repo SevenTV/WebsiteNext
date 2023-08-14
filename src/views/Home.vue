@@ -17,5 +17,3 @@ useHead({
 	title: "7TV - Home",
 });
 </script>
-
-<style scoped lang="scss"></style>
