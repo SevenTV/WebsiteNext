@@ -1,5 +1,5 @@
 import { type RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
-import { defineAsyncPage } from "@/util/router";
+import { defineAsyncPage } from "@seventv/util-vue/modules/router";
 
 const routes: RouteRecordRaw[] = [
 	{
@@ -17,7 +17,7 @@ const routes: RouteRecordRaw[] = [
 	},
 	{
 		path: "/:pathMatch(.*)",
-		name: "NotFound",
+		name: "404",
 		component: defineAsyncPage(() => import("@/views/404.vue")),
 	},
 ];

@@ -23,6 +23,7 @@ module.exports = {
 		"no-debugger": "error",
 		"no-undef": "off",
 		quotes: [1, "double"],
+		"no-unused-vars": "off",
 		"@typescript-eslint/no-unused-vars": "error",
 		"@typescript-eslint/explicit-module-boundary-types": "off",
 		"@typescript-eslint/no-namespace": "off",

@@ -14,6 +14,6 @@
 import { useHead } from "@vueuse/head";
 
 useHead({
-	title: "7TV - Home",
+	title: "Home",
 });
 </script>

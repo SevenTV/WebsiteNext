@@ -2,12 +2,19 @@
 	<div class="navbar">
 		<router-link to="/">Home</router-link>
 		<div class="navbar-spacer"></div>
+		<UiLoadingBar v-if="isLoading" class="loading-bar" />
 	</div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { UiLoadingBar } from "@seventv/ui";
 
-<style scoped>
+defineProps<{
+	isLoading: boolean;
+}>();
+</script>
+
+<style scoped lang="scss">
 .navbar {
 	background-color: var(--theme-background-base);
 	border-bottom: var(--theme-background-card) 1px solid;

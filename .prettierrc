@@ -22,5 +22,6 @@
 	],
 	"importOrderGroupNamespaceSpecifiers": true,
 	"importOrderSeparation": false,
-	"importOrderSortSpecifiers": true
+	"importOrderSortSpecifiers": true,
+	"importOrderParserPlugins": ["typescript", "decorators-legacy"]
 }

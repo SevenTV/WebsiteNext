@@ -1,12 +1,12 @@
 <template>
-	<div class="layout-root">
-		<NavHeader v-if="showNav" />
-		<div class="loading-container" :show="loading">
-			<UiLoadingBar class="loading-bar" />
-		</div>
+	<div v-theme-root class="layout-root">
+		<NavHeader v-if="showNav" :is-loading="isLoading" />
 		<div class="page-container">
 			<RouterView v-slot="{ Component, route }">
-				<Suspense @pending="loading = true" @resolve="loading = false">
+				<Suspense
+					@pending="loadingKeys.add(SUSPENSE_LOADING_KEY)"
+					@resolve="loadingKeys.delete(SUSPENSE_LOADING_KEY)"
+				>
 					<component :is="Component" v-if="Component" :key="getUniqueRouteKey(route)" />
 				</Suspense>
 			</RouterView>
@@ -15,11 +15,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, watch } from "vue";
 import { useRouter } from "vue-router";
-import { getUniqueRouteKey } from "./util/router";
+import { useHead } from "@vueuse/head";
+import useGlobalLoadingState from "@/composable/useGlobalLoadingState";
+import useLocaleStore from "@/composable/useLocaleStore";
 import NavHeader from "@/components/NavHeader.vue";
-import { UiLoadingBar } from "@seventv/ui";
+import { useThemeManager } from "@seventv/theming";
+import { getUniqueRouteKey } from "@seventv/util-vue/modules/router";
 
 const router = useRouter();
 
@@ -33,11 +36,37 @@ const showNav = computed(() => {
 	return true;
 });
 
+const head = useHead({});
+
+// Locale
+useLocaleStore();
+
+// Theming
+const themeManager = useThemeManager(true, {
+	storage: { type: "localstorage" },
+});
+const { vThemeRoot } = themeManager.css;
+
 // Loading state
-const loading = ref(false);
+const { loadingKeys, isLoading } = useGlobalLoadingState();
+const SUSPENSE_LOADING_KEY = Symbol("app.router-suspense");
+
+watch(isLoading, (isLoading) => {
+	if (!head) return;
+
+	if (isLoading) {
+		head.patch({
+			title: "Loading...",
+		});
+	} else {
+		head.patch({
+			title: undefined,
+		});
+	}
+});
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .layout-root {
 	position: fixed;
 	width: 100%;
@@ -51,23 +80,5 @@ const loading = ref(false);
 .page-container {
 	flex: 1 1 auto;
 	overflow: auto;
-}
-
-.loading-container {
-	position: relative;
-	height: 0;
-	z-index: 1;
-	opacity: 0;
-	transition: 0.5s opacity;
-
-	&[show="true"] {
-		opacity: 1;
-	}
-
-	.loading-bar {
-		position: absolute;
-		width: 100%;
-		box-shadow: 0 0 70px 1px rgb(0, 0, 0);
-	}
 }
 </style>

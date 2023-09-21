@@ -4,7 +4,7 @@
 		"target": "ES2022",
 		"module": "ESNext",
 		"moduleResolution": "Node",
-		"useDefineForClassFields": true,
+		"useDefineForClassFields": false,
 		"strict": true,
 		"jsx": "preserve",
 		"jsxFactory": "VueJSX",
@@ -12,7 +12,8 @@
 		"resolveJsonModule": true,
 		"esModuleInterop": true,
 		"lib": ["ESNext", "DOM", "WebWorker"],
-		"types": ["vite/client"],
+		"types": ["vite/client", "@intlify/unplugin-vue-i18n/messages"],
+		"experimentalDecorators": true,
 		"skipLibCheck": true,
 		"baseUrl": ".",
 		"paths": {
