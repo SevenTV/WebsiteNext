@@ -36,8 +36,6 @@ const showNav = computed(() => {
 	return true;
 });
 
-const head = useHead({});
-
 // Locale
 useLocaleStore();
 
@@ -51,19 +49,20 @@ const { vThemeRoot } = themeManager.css;
 const { loadingKeys, isLoading } = useGlobalLoadingState();
 const SUSPENSE_LOADING_KEY = Symbol("app.router-suspense");
 
-watch(isLoading, (isLoading) => {
-	if (!head) return;
-
-	if (isLoading) {
-		head.patch({
-			title: "Loading...",
-		});
-	} else {
-		head.patch({
-			title: undefined,
-		});
-	}
-});
+const headOverride = useHead({}, { tagPriority: "high" });
+if (headOverride) {
+	watch(isLoading, (isLoading) => {
+		if (isLoading) {
+			headOverride.patch({
+				title: "Loading...",
+			});
+		} else {
+			headOverride.patch({
+				title: undefined,
+			});
+		}
+	});
+}
 </script>
 
 <style scoped lang="scss">
