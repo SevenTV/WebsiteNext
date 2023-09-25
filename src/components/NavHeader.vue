@@ -1,6 +1,6 @@
 <template>
 	<div class="navbar">
-		<router-link to="/">Home</router-link>
+		<router-link to="/">{{ $t("view.home.title") }}</router-link>
 		<div class="navbar-spacer"></div>
 		<UiLoadingBar v-if="isLoading" class="loading-bar" />
 	</div>

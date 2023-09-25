@@ -16,6 +16,7 @@
 
 <script setup lang="ts">
 import { computed, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
 import { useHead } from "@vueuse/head";
 import useGlobalLoadingState from "@/composable/useGlobalLoadingState";
@@ -37,6 +38,7 @@ const showNav = computed(() => {
 });
 
 // Locale
+const i18n = useI18n();
 useLocaleStore();
 
 // Theming
@@ -54,7 +56,7 @@ if (headOverride) {
 	watch(isLoading, (isLoading) => {
 		if (isLoading) {
 			headOverride.patch({
-				title: "Loading...",
+				title: i18n.t("app.loading"),
 			});
 		} else {
 			headOverride.patch({

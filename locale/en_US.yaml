@@ -1,1 +1,19 @@
 locale: English (United States)
+
+app:
+    loading: Loading...
+
+view:
+    home:
+        title: Home
+
+    error404:
+        title: Page Not Found
+        message: Sorry it seems the URL you requested couldn't be found.
+
+error:
+    unknown: An unknown error occurred.
+    action:
+        return_home: Return to Home
+        go_back: Go Back
+        reload_page: Reload Page

@@ -1,14 +1,14 @@
 <template>
 	<div class="error-page">
 		<span class="error-symbol">!</span>
-		<span>{{ message }}</span>
+		<span>{{ message ?? $t("error.unknown") }}</span>
 		<UiButton
-			v-if="userAction === 'home' || (userAction == 'back' && !canGoBack())"
-			label="Return to Home"
+			v-if="userAction === 'home' || (userAction === 'back' && !canGoBack())"
+			:label="$t('error.action.return_home')"
 			@click="onHomeClick"
 		/>
-		<UiButton v-else-if="userAction === 'back'" label="Go Back" @click="onBackClick" />
-		<UiButton v-else-if="userAction === 'reload'" label="Reload Page" @click="onReloadClick" />
+		<UiButton v-else-if="userAction === 'back'" :label="$t('error.action.go_back')" @click="onBackClick" />
+		<UiButton v-else-if="userAction === 'reload'" :label="$t('error.action.reload_page')" @click="onReloadClick" />
 	</div>
 </template>
 
@@ -22,7 +22,6 @@ withDefaults(
 		userAction?: "reload" | "back" | "home" | "none";
 	}>(),
 	{
-		message: "An unknown error occured.",
 		userAction: "none",
 	},
 );

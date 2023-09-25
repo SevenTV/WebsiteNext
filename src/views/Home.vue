@@ -11,9 +11,12 @@
 </template>
 
 <script setup lang="ts">
+import { useI18n } from "vue-i18n";
 import { useHead } from "@vueuse/head";
 
+const i18n = useI18n();
+
 useHead({
-	title: "Home",
+	title: i18n.t("view.home.title"),
 });
 </script>
