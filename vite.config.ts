@@ -1,3 +1,4 @@
+import vueI18n from "@intlify/unplugin-vue-i18n/vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import { defineConfig, loadEnv } from "vite";
@@ -20,7 +21,12 @@ export default defineConfig(({ mode }) => {
 			},
 		},
 
-		plugins: [vue()],
+		plugins: [
+			vue(),
+			vueI18n({
+				include: [resolve(__dirname, "locale/**")],
+			}),
+		],
 		server: {
 			port: 4500,
 		},

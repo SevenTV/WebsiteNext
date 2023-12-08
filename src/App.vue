@@ -1,26 +1,26 @@
 <template>
-	<div class="layout-root">
-		<NavHeader v-if="showNav" />
-		<div class="loading-container" :show="loading">
-			<UiLoadingBar class="loading-bar" />
-		</div>
-		<div class="page-container">
-			<RouterView v-slot="{ Component, route }">
-				<Suspense @pending="loading = true" @resolve="loading = false">
-					<component :is="Component" v-if="Component" :key="getUniqueRouteKey(route)" />
-				</Suspense>
-			</RouterView>
-		</div>
+	<div v-theme-root class="layout-root">
+		<NavHeader v-if="showNav" :is-loading="showLoading" />
+		<AsyncRouterView
+			class="page"
+			@pending="loadingKeys.add(PAGE_LOADING_KEY)"
+			@resolve="loadingKeys.delete(PAGE_LOADING_KEY)"
+		/>
 	</div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, watchEffect } from "vue";
+import { useI18n } from "vue-i18n";
 import { useRouter } from "vue-router";
-import { getUniqueRouteKey } from "./util/router";
+import { useHead } from "@vueuse/head";
+import useGlobalLoadingState from "@/composable/useGlobalLoadingState";
+import useLocaleStore from "@/composable/useLocaleStore";
 import NavHeader from "@/components/NavHeader.vue";
-import { UiLoadingBar } from "@seventv/ui";
+import { useThemeManager } from "@seventv/theming";
+import { AsyncRouterView } from "@seventv/util-vue/modules/router";
 
+// Routing
 const router = useRouter();
 
 const showNav = computed(() => {
@@ -33,11 +33,37 @@ const showNav = computed(() => {
 	return true;
 });
 
+// Locale
+const i18n = useI18n();
+useLocaleStore();
+
+// Theming
+const themeManager = useThemeManager(true, {
+	storage: { type: "localstorage" },
+});
+const { vThemeRoot } = themeManager.css;
+
 // Loading state
-const loading = ref(false);
+const { loadingKeys, showLoading } = useGlobalLoadingState();
+const PAGE_LOADING_KEY = Symbol("app.router-page");
+
+const headOverride = useHead({}, { tagPriority: "high" });
+if (headOverride) {
+	watchEffect(() => {
+		if (showLoading.value) {
+			headOverride.patch({
+				title: i18n.t("app.loading"),
+			});
+		} else {
+			headOverride.patch({
+				title: undefined,
+			});
+		}
+	});
+}
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
 .layout-root {
 	position: fixed;
 	width: 100%;
@@ -46,28 +72,5 @@ const loading = ref(false);
 	left: 0;
 	display: flex;
 	flex-direction: column;
-}
-
-.page-container {
-	flex: 1 1 auto;
-	overflow: auto;
-}
-
-.loading-container {
-	position: relative;
-	height: 0;
-	z-index: 1;
-	opacity: 0;
-	transition: 0.5s opacity;
-
-	&[show="true"] {
-		opacity: 1;
-	}
-
-	.loading-bar {
-		position: absolute;
-		width: 100%;
-		box-shadow: 0 0 70px 1px rgb(0, 0, 0);
-	}
 }
 </style>

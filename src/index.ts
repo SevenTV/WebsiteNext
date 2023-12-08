@@ -1,13 +1,18 @@
 import { createApp } from "vue";
 import { createHead } from "@vueuse/head";
 import App from "./App.vue";
-import router from "./router/router";
-import "@/index.scss";
+import i18n from "@/i18n";
+import router from "@/router";
 
 const app = createApp(App);
 
+app.use(i18n);
 app.use(router);
 
-app.use(createHead());
+app.use(
+	createHead({
+		titleTemplate: (title) => (title ? `${title} - 7TV` : "7TV"),
+	}),
+);
 
 app.mount("#app");
