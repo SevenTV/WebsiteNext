@@ -70,7 +70,8 @@ if (headOverride) {
 	height: 100%;
 	top: 0;
 	left: 0;
-	display: flex;
-	flex-direction: column;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 4em 2.3fr;
 }
 </style>

@@ -27,6 +27,14 @@ export default defineConfig(({ mode }) => {
 				include: [resolve(__dirname, "locale/**")],
 			}),
 		],
+		css: {
+			preprocessorOptions: {
+				scss: {
+					// eslint-disable-next-line quotes
+					additionalData: '@import "@seventv/theming/src/responsive/breakpoints.scss";',
+				},
+			},
+		},
 		server: {
 			port: 4500,
 		},
