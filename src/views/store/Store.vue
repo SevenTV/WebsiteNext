@@ -16,7 +16,6 @@ main {
 	display: grid;
 	grid-template-columns: 15em 1.8fr;
 	grid-template-rows: 1fr;
-	gap: 0px 0px;
 	grid-template-areas: "sidebar content";
 	transition: grid-template-columns 150ms;
 
@@ -34,6 +33,6 @@ main {
 	grid-area: content;
 	grid-auto-flow: row;
 	display: grid;
-	padding: 1rem 2rem 2rem 2rem;
+	padding: 1rem 2rem 2rem;
 }
 </style>
