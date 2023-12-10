@@ -8,6 +8,18 @@ const routes: RouteRecordRaw[] = [
 		component: defineAsyncPage(() => import("@/views/Home.vue")),
 	},
 	{
+		path: "/store",
+		name: "Store",
+		component: defineAsyncPage(() => import("@/views/store/Store.vue")),
+		children: [
+			{
+				path: "",
+				name: "StoreSubscription",
+				component: defineAsyncPage(() => import("@/views/store/StoreSubscription.vue")),
+			},
+		],
+	},
+	{
 		path: "/legal/terms",
 		component: defineAsyncPage(() => import("@/views/legal/LegalTerms.vue")),
 	},
