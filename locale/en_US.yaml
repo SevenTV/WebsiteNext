@@ -7,6 +7,15 @@ view:
     home:
         title: Home
 
+    emotes:
+        title: Emotes
+
+    discover:
+        title: Discover
+
+    store:
+        title: Store
+
     error404:
         title: Page Not Found
         message: Sorry it seems the URL you requested couldn't be found.
